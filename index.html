@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNAP E-Commerce</title>
+    <link href="/public/styles.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5d82546e11.js" crossorigin="anonymous"></script>
+    
+</head>
+<body class="w-full overflow-x-hidden">
+    <div class="md:hidden hidden bg-black/[.001] blur-sm w-screen h-screen fixed z-10 backdrop-blur-sm" id="overlay"></div>
+    <div class="hidden z-20 fixed bg-slate-50 w-64 h-auto top-[15%] left-[9%] sm:left-[30%] md:top-[13%] lg:left-[75%] shadow-md pb-3" id="checkout-card-mobile"><!-- checkout card for mobile view begins -->
+        <div class="absolute -top-2 -right-2 bg-red-500" id="close-checkout-card-mobile">
+            <i class="fa-solid fa-x p-2"></i> 
+        </div>
+        <div id="shop-total">
+            <p class="my-4 text-center text-4xl">$<span id="shop-total-price-mobile">0</span></p>
+        </div>
+        <div id="container-for-checkout-card-mobile" class="w-full grid grid-flow-col auto-cols-auto overflow-x-auto">
+        
+        </div>
+        <div class="text-center">
+            <button class="bg-orange-200 py-2 px-5 text-gray-100 mt-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 hover:text-orange-200 duration-300 text-center" id="confirm-purchase-btn">CONFIRM</button>
+        </div>
+        
+
+    </div><!-- checkout card for mobile view ends -->
+    <div class="bg-black/[.001] hidden w-screen h-screen fixed z-30 backdrop-blur-sm" id="overlay-products">
+        <div class="w-3/4 h-3/4 md:w-1/2 md:h-3/4 m-auto mt-11 mb-2">
+            <div class="text-center"><span id="close-display-image"><i class="fa-solid fa-x"></i></span></div>
+            <div class="bg-slate-200 h-full w-full"><img src="images/shirt.jpg" class="object-cover md:object-contain w-full h-full" id="display-image"></div>
+            
+        </div>
+    </div>
+    <!-- beginning of nav bar-->
+    <nav class="flex justify-between items-center py-4 md:py-6 bg-gray-100 shadow-md transition duration-75 fixed -top-[75px] w-full z-20" id="navbar">
+        <div class="ml-12"> <!-- div for logo -->
+            <img src="images/logo.svg">
+        </div> <!-- div for logo -->
+        <div class="block md:hidden mr-12 z-50" id="open-menu"> <!-- div for menu hamburger -->
+            <img src="images/icon-menu.svg">
+        </div> <!-- div for menu hamburger -->
+        <div class="mr-12 hidden md:block"> <!-- div for all links -->
+            <ul class="flex lg:gap-24 md:gap-16 text-sm">
+                <li class="hover:text-orange-200"><a href="index.html"><span><i class="fa-solid fa-house px-2"></i></span>HOME</a></li>
+                <li class="hover:text-orange-200"><a href="#shop"><span><i class="fa-solid fa-store px-2"></i></span>SHOP</a></li>
+                <div class="relative"> <!-- profile large screen -->
+                    <li class="hover:text-orange-200" id="profile"><a href="#"><span><i class="fa-solid fa-user px-2"></i></span>PROFILE</a></li>
+
+                    <div class="absolute top-6 hidden bg-slate-100 shadow-md p-6" id="profile-card-desktop"> <!-- profile card -->
+                        <form>
+                            <label>Name:</label>
+                            <input type="text" id="name" name="name" class="hover:bg-yellow-200 bg-slate-200 mb-2">
+                            <br>
+                            <label>Email:</label>
+                            <input type="email" id="email" name="email" class="hover:bg-yellow-200 bg-slate-200 mb-2">
+                            <button class="bg-orange-200 py-1 px-2 text-gray-100 mt-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 hover:text-orange-200 duration-300">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="relative"> <!-- div for cart big screen -->
+                    <li class="hover:text-orange-200"  id="cart-desktop"><a href="#"><span><i class="fa-solid fa-cart-shopping px-2"></i></span>CART</a></li>
+            </ul>
+        </div> <!-- div for all links -->
+        <div class="md:hidden absolute top-0 right-0 h-screen transition-transform duration-1000 z-20 ease-in-out w-1/2" id="links-menu"> <!-- menu for all links in mobile view -->
+            <div class="hidden absolute top-0 right-0 bg-gray-100 h-screen text-left w-full" id="link-menu-item">
+                <img id="close-menu" class="m-0 mt-6 pl-6" src="images/icon-close-menu.svg">
+                <ul class="pt-20 pl-6">
+                <li class="mb-5 hover:text-orange-200"><a href="index.html"><span><i class="fa-solid fa-house px-2"></i></span>HOME</a></li>
+                <li class="my-5 hover:text-orange-200"><a href="#shop"><span><i class="fa-solid fa-store px-2"></i></span>SHOP</a></li>
+                <div> <!-- profile for small screen -->
+                    <li class="my-5 hover:text-orange-200" id="profile-mobile"><a href="#"><span><i class="fa-solid fa-user px-2"></i></span>PROFILE</a></li>
+                    <div class="hidden bg-slate-100 p-6" id="profile-card-mobile"> <!-- profile card -->
+                        <form>
+                            <label>Name:</label>
+                            <input type="text" id="name" name="name" class="hover:bg-yellow-200 bg-slate-200 mb-2">
+                            <br>
+                            <label>Email:</label>
+                            <input type="email" id="email" name="email" class="hover:bg-yellow-200 bg-slate-200 mb-2">
+                            <button class="bg-orange-200 py-1 px-2 text-gray-100 mt-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 hover:text-orange-200 duration-300">SUBMIT</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <li class="my-5 hover:text-orange-200" id="cart-mobile"><a href="#"><span><i class="fa-solid fa-cart-shopping px-2" ></i></span>CART</a></li>
+                </ul>
+            </div>
+            
+        </div> <!-- menu for all links in mobile view -->
+    </nav>
+    
+    <!-- end of nav bar-->
+    <!-- start of body -->
+    <main class="top-16 z-0 mb-16">
+        <div class="relative w-full h-screen"> <!-- landing page start -->
+            <div>
+                <img src="images/landing-page-background.jpg" alt="landing-page-background" class="w-full h-screen object-cover">
+            </div>
+            
+            <div class="absolute top-[40%] left-1/4 right-1/4 text-center text-gray-100"> <!-- landing page text -->
+                <h3 class="text-lg md:text-xl lg:text-2xl">CHIC, SPORTY, ELEGANT</h3>
+                <h1 class="text-4xl md:text-4xl lg:text-6xl">Choose your style</h1>
+                <button class="bg-orange-200 py-2 px-5 md:py-4 md:px-10 text-gray-100 mt-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 hover:text-orange-200 duration-300"><a href="#shop">SHOP NOW</a>
+                    
+                </button>
+            </div>
+        </div> <!-- landing page end -->
+
+        <div id="shop" class="flex justify-around items-center md:mx-auto mx-6 md:my-24 my-11 max-w-4xl"><!-- filter buttons start -->
+            <div class="md:relative md:w-52 md:h-52">
+                <img src="images/shirt.jpg" class="hidden md:block object-cover w-52 h-52">
+            
+                    <p class="py-2 md:px-11 px-6 bg-slate-200/70 md:absolute md:top-[84px] md:left-[35.75px] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-orange-200 hover:text-slate-200 duration-300" id="filter-btn" data-id="shirt">SHIRT</p>
+                
+            </div>
+            <div class="md:relative md:w-52 md:h-52">
+                <img src="images/trousers.jpg" class="hidden md:block object-cover w-52 h-52">
+                
+                    <p class="py-2 md:px-11 px-6 bg-slate-200/70 md:absolute md:top-[84px] md:left-[22.238px] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-orange-200 hover:text-slate-200 duration-300" id="filter-btn" data-id="trousers">TROUSERS</p>
+                
+            </div>
+            <div class="md:relative md:w-52 md:h-52">
+                <img src="images/shoes.jpg" class="hidden md:block object-cover">
+                
+                    <p class="py-2 md:px-11 px-6 bg-slate-200/70 md:absolute md:top-[84px] md:left-[35.75px] transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-orange-200 hover:text-slate-200 duration-300" id="filter-btn" data-id="shoes">SHOES</p>
+                
+            </div>
+        </div><!-- filter buttons end -->
+        <div class="mb-8 w-full items-center hidden justify-center text-center" id="all-button-container">
+            <div class="m-auto max-w-xs">
+                <p class="py-2 md:px-11 px-6 bg-slate-200/70 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-orange-200 hover:text-slate-200 duration-300" id="filter-btn" data-id="all">SHOW ALL</p>
+            </div>
+            
+        </div>
+
+        <div class="grid md:grid-cols-3 grid-cols-2 lg:grid-cols-4 mx-2 md:mx-7 gap-4 place-content-center" id="shop-container"> <!-- shop body begins -->
+            <div class="h-64 shadow-md"><!-- card for shop begins--> 
+                <div class="bg-gray-200 h-[60%]"><!-- product image -->
+                    <img src=${item.img} alt=${item.title} class="object-cover w-full bg-black h-full">
+                </div>
+                <div class="p-2 w-full grid grid-cols-3 gap-1"><!-- product info -->
+                    <div class="h-4 col-span-2">
+                    </div>
+                    <div class="h-4"><p class="bg-orange-200 px-1 py-[1px] md:px-3 md:py-1 text-[6px] text-center">${item.category}</p></div>
+                    <div class="h-10"><p class="text-left text-[10px] sm:text-xs md:text-sm">${item.title}</p></div>
+                    <div class="h-7 col-span-2">
+                        <p class="text-[8px] md:text-[10px] text-right">${item.desc}</p>
+                    </div>
+                    <div class="h-5 col-span-2">
+                        <button class="md:px-3 px-1 py-[1px] text-[8px] sm:text-[10px] md:text-xs md:py-1 text-left bg-orange-200
+            
+                        transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-orange-200 hover:text-black duration-300
+            
+                        ">ADD TO CART <span><i class="fa-solid fa-cart-shopping px-1 sm:px-2"></i></span></button>
+                    </div>
+        
+                    <div class="h-7 "><p class="text-sm sm:text-xl  text-right">$${item.price}</p></div>
+                 </div>
+    
+            </div><!-- card for shop ends-->
+            
+            
+        </div><!-- shop body ends -->
+    </main>
+    <footer class="p-7 bg-orange-200">
+        <div>
+            <img src="images/logo.svg" alt="logo">
+        </div>
+        <div class="sm:flex flex-row justify-start sm:justify-center sm:m-9 m-3">
+            <div class="px-9 py-3">
+                <p class="text-2xl">Services</p>
+                <ul>
+                    <li class="text-sm py-1">Shipping and Payment</li>
+                    <li class="text-sm py-1">FAQ</li>
+                    <li class="text-sm py-1">Returns</li>
+                    <li class="text-sm py-1">Terms and Conditions</li>
+                </ul>
+            </div>
+            
+            <div class="px-9 py-3">
+                <p class="text-2xl">Brands and Designs</p>
+                <ul>
+                    <li class="text-sm py-1">Lorem ipsum</li>
+                    <li class="text-sm py-1">Dolor sit</li>
+                    <li class="text-sm py-1">Amet consectetur</li>
+                    <li class="text-sm py-1">Adipisicing elit</li>
+                    <li class="text-sm py-1">Cumque animi</li>
+                    <li class="text-sm py-1">Voluptates voluptate</li>
+                    <li class="text-sm py-1">Possimus pariatur</li>
+                    <li class="text-sm py-1">Facilis distinctio</li>
+                    <li class="text-sm py-1">Facere totam</li>
+                </ul>
+            </div>
+            <div class="px-9 py-3">
+                <p class="text-2xl">Contact Us</p>
+                <ul>
+                    <li class="text-sm py-1"><span><i class="pr-4 fa-solid fa-phone"></i></span>snap@gmail.com</li>
+                    <li class="text-sm py-1"><span><i class="pr-4 fa-solid fa-phone"></i></span>+123 456 7890</li>
+                    <li class="text-sm py-1"><snap><i class="pr-4 fa-brands fa-facebook"></i></snap>Snap/facebook.com</li>
+                    <li class="text-sm py-1"><snap><i class="pr-4 fa-brands fa-twitter"></i></snap>Snap/twitter.com</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- end of body -->
+    <script src="app.js"></script>
+</body>
+</html>
